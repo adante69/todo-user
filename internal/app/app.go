@@ -14,10 +14,10 @@ type App struct {
 
 func New(logger *slog.Logger,
 	grpcPort int,
-	storagePath string,
+	Dsn string,
 	tokenTLL time.Duration,
 ) *App {
-	storage, err := postgres.New(storagePath)
+	storage, err := postgres.New(Dsn)
 	if err != nil {
 		panic(err)
 	}

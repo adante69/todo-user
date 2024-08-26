@@ -22,7 +22,7 @@ func main() {
 
 	log.Info("starting server")
 
-	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath, cfg.TokenTTL)
+	application := app.New(log, cfg.GRPC.Port, cfg.Database.Dsn, cfg.TokenTTL)
 
 	go application.GRPCServer.MustRun()
 

@@ -1,0 +1,7 @@
+env: "dev"
+database:
+  dsn: "host=db user=admin password=admin dbname=new_db port=5432 sslmode=disable TimeZone=Europe/Moscow"
+token_ttl: 1h
+grpc:
+  port: 44044
+  timeout: 5s

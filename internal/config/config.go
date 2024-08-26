@@ -3,15 +3,18 @@ package config
 import (
 	"flag"
 	"github.com/ilyakaznacheev/cleanenv"
+	"log/slog"
 	"os"
 	"time"
 )
 
 type Config struct {
-	Env         string        `yaml:"env" env-default:"local"`
-	StoragePath string        `yaml:"storage_path" env-required:"true"`
-	TokenTTL    time.Duration `yaml:"token_ttl" env-default:"24h"`
-	GRPC        GRPCConfig    `yaml:"grpc"`
+	Env      string `yaml:"env" env-default:"local"`
+	Database struct {
+		Dsn string `yaml:"dsn" env-required:"true"`
+	}
+	TokenTTL time.Duration `yaml:"token_ttl" env-default:"24h"`
+	GRPC     GRPCConfig    `yaml:"grpc"`
 }
 
 type GRPCConfig struct {
@@ -20,8 +23,7 @@ type GRPCConfig struct {
 }
 
 func MustLoad() *Config {
-	path := "./config/local.yaml"
-
+	path := fetchConfigPath()
 	return MustLoadByPath(path)
 }
 
@@ -33,6 +35,7 @@ func fetchConfigPath() string {
 
 	if res == "" {
 		res = os.Getenv("CONFIG_PATH")
+		slog.Info("CONFIG_PATH", res)
 	}
 
 	return res
