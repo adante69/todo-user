@@ -1,0 +1,6 @@
+env: "local"
+storage_path: "host=localhost port=5432 user=admin password=admin dbname=new_db sslmode=disable"
+token_ttl: 1h
+grpc:
+  port: 44044
+  timeout: 5s
