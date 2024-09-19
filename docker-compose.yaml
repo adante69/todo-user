@@ -2,12 +2,12 @@ services:
   app:
     build: .
     depends_on:
-      - db
+      - db-sso
     environment:
       - CONFIG_PATH=./config/config.yaml
 
-  db:
-    container_name: postgres
+  db-sso:
+    container_name: postgres-sso
     image: postgres:16-alpine
     environment:
       POSTGRES_PASSWORD: admin
@@ -20,7 +20,7 @@ services:
   migrations:
     build: .
     depends_on:
-      - db
+      - db-sso
     command: ./migrator -migrate
 
 

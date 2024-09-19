@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-sso-service
+spec:
+  selector:
+    app: todo-sso
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 50051
+  type: ClusterIP

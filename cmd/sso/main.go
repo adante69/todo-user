@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -21,6 +22,8 @@ func main() {
 	log := setupLogger(cfg.Env)
 
 	log.Info("starting server")
+
+	fmt.Println(cfg)
 
 	application := app.New(log, cfg.GRPC.Port, cfg.Database.Dsn, cfg.TokenTTL)
 

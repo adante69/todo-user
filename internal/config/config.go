@@ -23,8 +23,7 @@ type GRPCConfig struct {
 }
 
 func MustLoad() *Config {
-	path := fetchConfigPath()
-	return MustLoadByPath(path)
+	return MustLoadByPath("./config/config.yaml")
 }
 
 func fetchConfigPath() string {

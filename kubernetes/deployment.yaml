@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-sso-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-sso
+  template:
+    metadata:
+      labels:
+        app: todo-sso
+    spec:
+      containers:
+        - name: todo-sso-app
+          image: daniiarsherniiazov22/todo-sso-app-1:latest
+          ports:
+            - containerPort: 50051 # Порт для gRPC
